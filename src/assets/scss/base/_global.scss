@@ -1,0 +1,46 @@
+// Global styles goes here
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+// .cursor-not-allowed {
+//     cursor: not-allowed;
+// }
+
+// .overflow-x-auto {
+//     overflow-x: auto;
+//     overflow-y: hidden;
+// scrollbar-color: $secondary transparent;
+// scrollbar-width: thin;
+// }
+
+.overflow-y-auto {
+    overflow-y: auto;
+    overflow-x: hidden;
+    // scrollbar-color: $secondary transparent;
+    // scrollbar-width: thin;
+}
+
+.fs-xs {
+    font-size: 0.75rem;
+}
+
+.min-h-100 {
+    min-height: 100%;
+}
+
+.transition {
+    transition: $transition-timing all;
+}
