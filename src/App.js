@@ -1,5 +1,6 @@
 import Header from "./core/components/Header";
 import Sidebar from "./core/components/Sidebar";
+import Routing from "./Routing/Routing";
 
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
         <header id='header' className="d-flex align-items-center px-4 bg-info">
           <Header />
         </header>
-        <main className="flex-grow-1 bg-primary p-3">main</main>
+        <main className="flex-grow-1 bg-primary p-4">
+          <Routing />
+        </main>
       </div>
     </div>
   );
