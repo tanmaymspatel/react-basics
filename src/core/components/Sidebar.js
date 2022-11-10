@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const Sidebar = () => {
   return (
@@ -7,8 +8,19 @@ const Sidebar = () => {
         <h4>React Basics</h4>
       </div>
       <div className='d-flex flex-column flex-grow-1'>
-        <ul className='flex-grow-1 py-3'>side nav 1</ul>
-        <ul className='py-3'>side nav 2</ul>
+        <nav className='flex-grow-1 p-3'>
+          <ul className='nav d-flex flex-column'>
+            <li className='nav-item p-2 '>
+              <NavLink className='nav-link border-radius' to='/'>Props</NavLink>
+            </li>
+            <li className='nav-item p-2'>
+              <NavLink className='nav-link border-radius' to='/data-communication'>Data Communication</NavLink>
+            </li>
+          </ul>
+        </nav>
+        <nav className='p-3'>
+          <ul>side nav 2</ul>
+        </nav>
       </div>
     </>
   )
