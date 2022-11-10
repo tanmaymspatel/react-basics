@@ -5,7 +5,7 @@ import Button from '../../Shared/components/UI/Button';
 const GrandChild = () => {
 
     const dataCtx = useContext(DataContext);
-    console.log(dataCtx);
+
     return (
         <div className='border border-success p-4 position-relative'>
             <h4 className='pt-1 pb-4 px-2  position-absolute start-0 top-0'>GranChild Count : <span className='fw-bolder text-success'>{dataCtx.grandChildCount}</span></h4>

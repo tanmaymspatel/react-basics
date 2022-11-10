@@ -1,11 +1,13 @@
 import React from 'react'
+import DataProvider from '../../contexts/DataProvider';
 import Parent from './Parent'
 
 const DataCommunication = () => {
     return (
-        <Parent>
-        </Parent>
-
+        <DataProvider>
+            <Parent>
+            </Parent>
+        </DataProvider>
     )
 }
 
