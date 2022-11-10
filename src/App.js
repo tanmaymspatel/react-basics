@@ -5,7 +5,7 @@ import Routing from "./Routing/Routing";
 function App() {
   return (
     <div className="d-flex h-100">
-      <aside id="sidebar" className="h-100 d-flex flex-column bg-secondary shadow-lg text-light">
+      <aside id="sidebar" className="h-100 d-flex flex-column bg-secondary text-light">
         <Sidebar />
       </aside>
       <div className="flex-grow-1 d-flex flex-column">
