@@ -16,6 +16,9 @@ const Sidebar = () => {
             <li className='nav-item p-2'>
               <NavLink className='nav-link border-radius' to='/data-communication'>Data Communication</NavLink>
             </li>
+            <li className='nav-item p-2'>
+              <NavLink className='nav-link border-radius' to='/form'>Formik Form</NavLink>
+            </li>
           </ul>
         </nav>
         <nav className='p-3'>
