@@ -16,9 +16,8 @@ const Routing = () => {
             <Route path='/home' element={<Home />} />
             <Route path='/form' element={<FormikForm />} />
             <Route path='/employee-list' element={<EmployeeList />} />
-            <Route path='/employee-form' element={<EmployeeForm />} >
-                <Route path=':id' element={<EmployeeForm />} />
-            </Route>
+            <Route path='/employee-form' element={<EmployeeForm />} />
+            <Route path='/edit-emolyee/:id' element={<EmployeeForm />} />
         </Routes>
     )
 }

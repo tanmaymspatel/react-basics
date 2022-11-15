@@ -7,8 +7,8 @@ const Sidebar = () => {
       <div className='side-header d-flex align-items-center justify-content-center'>
         <h4>React Basics</h4>
       </div>
-      <div className='d-flex flex-column flex-grow-1'>
-        <nav className='flex-grow-1 p-3'>
+      <div className='d-flex flex-column flex-grow-1 overflow-hidden'>
+        <nav className='flex-grow-1 p-3 overflow-y-auto'>
           <ul className='nav d-flex flex-column'>
             <li className='nav-item p-2 '>
               <NavLink className='nav-link border-radius' to='/'>Props</NavLink>

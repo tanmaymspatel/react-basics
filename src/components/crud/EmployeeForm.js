@@ -1,6 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, } from "react-router-dom";
 import * as Yup from 'yup';
 
 import employeeServices from '../../Services/employeeServices';
@@ -8,7 +8,7 @@ import Button from '../../Shared/components/UI/Button'
 
 /**
  * @name EmployeeForm
- * @returns An employee registration form form 
+ * @returns An employee registration form
  */
 const EmployeeForm = () => {
 
@@ -23,22 +23,17 @@ const EmployeeForm = () => {
     const navigate = useNavigate();
 
     /**
-     * @name initialValues
-     * @description Initial values of the form field
-     */
-    const initialValues = {
-        firstName: "",
-        lastName: "",
-        emailId: "",
-    };
-
-    /**
      * @name onSubmit
      * @description Triggers when the submit button is clicked and after that resets the form
      * @param {*} values - The latest value of the form which is submitted 
      */
-    const onSubmit = async (values, { resetForm }) => {
-        await employeeServices.addEmployee(values);
+    const onSubmit = (values, { resetForm }) => {
+        if (id) {
+            console.log(id, values);
+            employeeServices.updateEmployee(id, values);
+        } else if (!id) {
+            employeeServices.addEmployee(values);
+        }
         resetForm({ values: '' });
         navigate('/employee-list')
     }
@@ -54,24 +49,29 @@ const EmployeeForm = () => {
     })
 
 
-    const [patchValue, setPatchValue] = useState(initialValues)
-    const [editMode, setEditMode] = useSearchParams({})
-
     /**
-     * @name getEmployeeById
-     * @desc: calls  getEmployeeById from service and sets page title and button tile to Update, patches value to feilds
+     * @name initialValues
+     * @description Initial values of the form field
      */
-    const getEmployeeById = () => {
-        employeeServices.getEmployeeById(id).then(res => {
-            setPatchValue(res.data)
-        })
-    }
+    const initialValues = {
+        firstName: "",
+        lastName: "",
+        emailId: "",
+    };
+
+    const [patchValue, setPatchValue] = useState(initialValues);
 
     useEffect(() => {
         if (id) {
-            setFormTitle('Edit Employee');
+            /**
+             * @name getEmployeeById
+             * @description To retrieve a employee record from a id
+             */
+            const getEmployeeById = () => {
+                setFormTitle('Edit Employee');
+                employeeServices.getEmployeeById(id).then(res => setPatchValue(res.data))
+            }
             getEmployeeById();
-            setEditMode({ edit_mode: 'on' })
         }
     }, [id])
 
@@ -79,9 +79,10 @@ const EmployeeForm = () => {
         <div className='w-50 mx-auto py-4 px-5 my-5 shadow-lg border-radius overflow-auto'>
             <h4 className="text-center py-3">{formTitle}</h4>
             <Formik
-                initialValues={initialValues}
-                onSubmit={onSubmit}
+                initialValues={patchValue}
+                onSubmit={(values, { resetForm }) => onSubmit(values, { resetForm })}
                 validationSchema={validationSchema}
+                enableReinitialize
             >
                 <Form>
                     <div className="my-3"> {/* first name */}

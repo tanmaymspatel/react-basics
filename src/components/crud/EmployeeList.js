@@ -60,7 +60,7 @@ const EmployeeList = () => {
      * @param {*} id 
      */
     const editEmployee = (id) => {
-        navigate(`/employee-form/${id}`)
+        navigate(`/edit-emolyee/${id}`)
     }
 
     /**
@@ -92,7 +92,7 @@ const EmployeeList = () => {
                 <h4 className='fw-bold p-2'>Employee List</h4>
             </div>
             <div>
-                <table className='table table-striped table-hover text-center'>
+                <table className='table table-striped table-hover text-center shadow-sm'>
                     <thead>
                         <tr className='py-1 bg-dark text-light align-middle'>
                             <th>No.</th>
