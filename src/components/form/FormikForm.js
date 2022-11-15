@@ -1,4 +1,4 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, FieldArray, FastField } from "formik";
 import * as Yup from 'yup';
 
 import Button from '../../Shared/components/UI/Button'
@@ -16,6 +16,7 @@ const FormikForm = () => {
     email: "",
     address: "",
     additionalInformation: "",
+    skills: ['']
   };
 
   /**
@@ -55,7 +56,6 @@ const FormikForm = () => {
     firstName: Yup.string().required('Required!'),
     lastName: Yup.string().required('Required!'),
     email: Yup.string().email('Invalid Email Format').required('Required!'),
-    address: Yup.string().required('Required!')
   })
 
   // formik object for configuring the form
@@ -121,7 +121,7 @@ const FormikForm = () => {
   );*/
 
   return (
-    <div className='w-50 mx-auto py-4 px-5 my-5 shadow-lg border-radius overflow-auto'>
+    <div className='w-75 mx-auto py-4 px-5 my-5 shadow-lg border-radius overflow-auto'>
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
@@ -151,8 +151,9 @@ const FormikForm = () => {
           </div>
           <div className="my-3">{/* address - custom component */}
             <label className='mb-1' htmlFor="address">Address : </label>
-            <Field name='address'>
+            <FastField name='address'>
               {props => {
+                console.log('hello');
                 const { field, meta } = props;
                 return (
                   <div>
@@ -163,7 +164,30 @@ const FormikForm = () => {
                 )
               }
               }
-            </Field>
+            </FastField>
+          </div>
+          <div className="my-3">{/* skills*/}
+            <label className='mb-1' htmlFor="skills">Skills : </label>
+            <FieldArray name="skills">
+              {
+                (arrayProps) => {
+                  const { push, remove, form } = arrayProps;
+                  const { values } = form;
+                  const { skills } = values;
+                  return (
+                    <div>
+                      {skills.map((skill, index) => (
+                        <div key={index} className='d-flex my-1'>
+                          <Field type='text' name={`skills[${index}]`} className='form-control w-75' />
+                          {index >= 1 && <Button type='button' className='btn btn-danger text-light mx-2' onClick={() => remove(index)}> - </Button>}
+                          <Button type='button' className='btn btn-secondary mx-1' onClick={() => push('')}> + </Button>
+                        </div>
+                      ))}
+                    </div>
+                  )
+                }
+              }
+            </FieldArray>
           </div>
           <div className="my-3">{/* additional information */}
             <label className='mb-1' htmlFor="addInfo">Additional Information : </label>
