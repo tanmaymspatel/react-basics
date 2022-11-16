@@ -29,7 +29,6 @@ const EmployeeForm = () => {
      */
     const onSubmit = (values, { resetForm }) => {
         if (id) {
-            console.log(id, values);
             employeeServices.updateEmployee(id, values);
         } else if (!id) {
             employeeServices.addEmployee(values);
